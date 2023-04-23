@@ -43,10 +43,11 @@ buttonEl.appendChild(iconEl);
 
 let chatbotMsgList = ["Hi Welcome!", "Hey", "Good Morning", "Good Evening", "How can I help you?", "What is your name?", "How are you?", "Thank You"];
 
-buttonEl.onclick = (event)=>{
+let messega = buttonEl.onclick = (event)=>{
     if (inputEl.value === ""){
         alert("Write your message")
-    }else if (event.key === "Enter"){
+    }else{
+
     let messageToContainer = document.createElement("div");
     messageToContainer.classList.add("msg-to-chatbot-container");
     botContainer.appendChild(messageToContainer);
@@ -60,35 +61,17 @@ buttonEl.onclick = (event)=>{
     messageFromContainer.classList.add("msg-from-chatbot-container");
     botContainer.appendChild(messageFromContainer);
 
-    let index = Math.ceil(Math.random()*chatbotMsgList.length);
-    console.log(index)
-    let messageFrombot = document.createElement("span");
-    messageFrombot.classList.add("msg-from-chatbot");
-    messageFrombot.textContent = chatbotMsgList[index-1];
-    messageFromContainer.appendChild(messageFrombot);
-    }
-    else{
-    let messageToContainer = document.createElement("div");
-    messageToContainer.classList.add("msg-to-chatbot-container");
-    botContainer.appendChild(messageToContainer);
-
-    let messageTobot = document.createElement("span");
-    messageTobot.classList.add("msg-to-chatbot");
-    messageTobot.textContent = inputEl.value;
-    messageToContainer.appendChild(messageTobot);
-
-    let messageFromContainer = document.createElement("div");
-    messageFromContainer.classList.add("msg-from-chatbot-container");
-    botContainer.appendChild(messageFromContainer);
-
-    let index = Math.ceil(Math.random()*chatbotMsgList.length);
+    let index = Math.ceil(Math.random()*chatbotMsgList.length-1);
     console.log(index)
     let messageFrombot = document.createElement("span");
     messageFrombot.classList.add("msg-from-chatbot");
     messageFrombot.textContent = chatbotMsgList[index];
     messageFromContainer.appendChild(messageFrombot);
-    inputEl.value = "";
-
+    inputEl.value = ""
     }
 }
-
+inputEl.addEventListener("keydown", function(event){
+    if (event.key ==="Enter"){
+        messega()
+    }
+})
